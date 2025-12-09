@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidChatApp">
         <activity
+            android:name=".LoginUserNameActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginOtpActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginPhoneNumberActivity"
             android:exported="false" />
         <activity
