@@ -1,16 +1,20 @@
 package com.example.androidchatapp;
 
-import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.example.androidchatapp.adapter.ChatRecyclerAdapter;
+import com.example.androidchatapp.adapter.SearchUserRecyclerAdapter;
 import com.example.androidchatapp.model.ChatMessageModel;
 import com.example.androidchatapp.model.ChatroomModel;
 import com.example.androidchatapp.model.UserModel;
@@ -21,9 +25,23 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
+
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.sql.Time;
 import java.util.Arrays;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -31,11 +49,13 @@ public class ChatActivity extends AppCompatActivity {
     String chatroomId;
     ChatroomModel chatroomModel;
     ChatRecyclerAdapter adapter;
+
     EditText messageInput;
     ImageButton sendMessageBtn;
     ImageButton backBtn;
     TextView otherUsername;
     RecyclerView recyclerView;
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +71,14 @@ public class ChatActivity extends AppCompatActivity {
         backBtn        = findViewById(R.id.back_btn);
         otherUsername  = findViewById(R.id.other_username);
         recyclerView   = findViewById(R.id.chat_recycler_view);
+
+        FirebaseUtil.getOtherProfilePicStorageRef(otherUser.getUserId()).getDownloadUrl()
+                .addOnCompleteListener(t -> {
+                    if(t.isSuccessful()){
+                        Uri uri  = t.getResult();
+                        AndroidUtil.setProfilePic(this,uri,imageView);
+                    }
+                });
 
         backBtn.setOnClickListener((v)->{
             onBackPressed();
