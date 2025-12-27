@@ -19,10 +19,10 @@ import com.example.androidchatapp.utils.FirebaseUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-public class SearchUserRecycleAdapter extends FirestoreRecyclerAdapter<UserModel, SearchUserRecycleAdapter.UserModuleViewHolder> {
+public class SearchUserRecyclerAdapter extends FirestoreRecyclerAdapter<UserModel, SearchUserRecyclerAdapter.UserModuleViewHolder> {
     Context context;
     View view;
-    public SearchUserRecycleAdapter(@NonNull FirestoreRecyclerOptions<UserModel> options,Context context) {
+    public SearchUserRecyclerAdapter(@NonNull FirestoreRecyclerOptions<UserModel> options, Context context) {
         super(options);
         this.context = context;
     }
