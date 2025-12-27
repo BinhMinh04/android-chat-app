@@ -30,18 +30,38 @@ android {
 }
 
 dependencies {
-
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
     implementation libs.constraintlayout
+
+    // Firebase (Dùng BoM để quản lý version đồng bộ)
+    implementation(platform(libs.firebase.bom))
+    implementation libs.firebase.auth
     implementation libs.firebase.firestore
+    implementation libs.firebase.storage
+
+    // Thư viện Firebase UI
+    implementation libs.firebase.ui.firestore
+
+    // --- CÁC THƯ VIỆN MỚI TỪ ĐOẠN 2 (Đã chuyển sang format libs) ---
+    implementation libs.glide
+    implementation libs.imagepicker
+    implementation libs.okhttp
+
+    // Thư viện Country Code Picker (Dùng bản mới 2.7.3 từ đoạn 1)
+    implementation libs.ccp
+
+    // Unit Test
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
-    implementation 'com.hbb20:ccp:2.7.3'
-    implementation(platform("com.google.firebase:firebase-bom:34.6.0"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-storage")
-    implementation 'com.firebaseui:firebase-ui-firestore:10.0.0-beta01'
+
+    implementation platform('com.google.firebase:firebase-bom:31.3.0')
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.1.2'
+    implementation 'com.firebaseui:firebase-ui-firestore:8.0.2'
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
 }
