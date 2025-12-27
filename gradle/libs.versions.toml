@@ -8,7 +8,14 @@ material = "1.13.0"
 activity = "1.11.0"
 constraintlayout = "2.2.1"
 googleGmsGoogleServices = "4.4.4"
-firebaseFirestore = "26.0.2"
+# Firebase & UI
+firebaseBom = "34.6.0"
+firebaseUiFirestore = "10.0.0-beta01"
+# Third-party
+ccp = "2.7.3"
+glide = "4.15.1"
+imagepicker = "2.1"
+okhttp = "4.10.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -18,9 +25,20 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
-firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
+
+# Firebase
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore" }
+firebase-storage = { group = "com.google.firebase", name = "firebase-storage" }
+firebase-ui-firestore = { group = "com.firebaseui", name = "firebase-ui-firestore", version.ref = "firebaseUiFirestore" }
+
+# Third-party
+ccp = { group = "com.hbb20", name = "ccp", version.ref = "ccp" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+imagepicker = { group = "com.github.dhaval2404", name = "imagepicker", version.ref = "imagepicker" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
-
