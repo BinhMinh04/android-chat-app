@@ -12,12 +12,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.easychat.ChatActivity;
-import com.example.easychat.R;
-import com.example.easychat.model.ChatroomModel;
-import com.example.easychat.model.UserModel;
-import com.example.easychat.utils.AndroidUtil;
-import com.example.easychat.utils.FirebaseUtil;
+import com.example.androidchatapp.ChatActivity;
+import com.example.androidchatapp.R;
+import com.example.androidchatapp.model.ChatroomModel;
+import com.example.androidchatapp.model.UserModel;
+import com.example.androidchatapp.utils.AndroidUtil;
+import com.example.androidchatapp.utils.FirebaseUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
