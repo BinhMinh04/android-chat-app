@@ -10,12 +10,18 @@ import android.view.ViewGroup;
 
 public class ChatFragment extends Fragment {
 
+    RecyclerView recyclerView;
+    RecentChatRecyclerAdapter adapter;
+
+
     public ChatFragment() {
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_chat, container, false);
+        View view =  inflater.inflate(R.layout.fragment_chat, container, false);
+        recyclerView = view.findViewById(R.id.recyler_view);
+        setupRecyclerView();
+
+        return view;
     }
-}
