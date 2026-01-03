@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidchatapp.adapter.SearchUserRecycleAdapter;
+import com.example.androidchatapp.adapter.SearchUserRecyclerAdapter;
 import com.example.androidchatapp.model.UserModel;
 import com.example.androidchatapp.utils.FirebaseUtil;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -27,7 +27,7 @@ public class SearchUserActivity extends AppCompatActivity {
     ImageButton searchButton;
     ImageButton backButton;
     RecyclerView recyclerView;
-    SearchUserRecycleAdapter adapter;
+    SearchUserRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +57,13 @@ public class SearchUserActivity extends AppCompatActivity {
 
     void setupSearchRecyclerView(String searchTerm) {
         Query query = FirebaseUtil.allUserCollectionReference()
-                .whereGreaterThanOrEqualTo("username",searchTerm);
+                .whereGreaterThanOrEqualTo("username",searchTerm)
+                .whereLessThanOrEqualTo("username",searchTerm+'\uf8ff');
 
         FirestoreRecyclerOptions<UserModel> options = new FirestoreRecyclerOptions.Builder<UserModel>()
                 .setQuery(query, UserModel.class).build();
 
-        adapter = new SearchUserRecycleAdapter(options,getApplicationContext());
+        adapter = new SearchUserRecyclerAdapter(options,getApplicationContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
         adapter.startListening();
