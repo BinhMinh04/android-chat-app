@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,6 +58,7 @@ public class ChatActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ImageView imageView;
 
+    @SuppressLint("SuspiciousIndentation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,10 +77,11 @@ public class ChatActivity extends AppCompatActivity {
 
         FirebaseUtil.getOtherProfilePicStorageRef(otherUser.getUserId()).getDownloadUrl()
                 .addOnCompleteListener(t -> {
-                    if(t.isSuccessful()){
-                        Uri uri  = t.getResult();
-                        AndroidUtil.setProfilePic(this,uri,imageView);
+                    if (!t.isSuccessful()) {
+                        return;
                     }
+                    Uri uri  = t.getResult();
+                    AndroidUtil.setProfilePic(this,uri,imageView);
                 });
 
         backBtn.setOnClickListener((v)->{
