@@ -53,6 +53,7 @@ public class LoginUserNameActivity extends AppCompatActivity {
              usernameInput.setError("Username length should be at least 3 chars");
              return;
         }
+        android.util.Log.d("Auth", "Current user ID: " + FirebaseUtil.currentUserId());
         setInProgress(true);
         if (userModel!=null){
             userModel.setUsername(username);
@@ -68,6 +69,14 @@ public class LoginUserNameActivity extends AppCompatActivity {
                     intent = new Intent(LoginUserNameActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
+                } else {
+                    Exception exception = task.getException();
+                    if (exception != null) {
+                        android.util.Log.e("LoginError", "Failed to save user: " + exception.getMessage());
+                    }
+                    android.widget.Toast.makeText(LoginUserNameActivity.this,
+                            "Failed to save user data. Please try again.",
+                            android.widget.Toast.LENGTH_SHORT).show();
                 }
             }
         });
